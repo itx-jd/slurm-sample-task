@@ -7,17 +7,8 @@
 #SBATCH --time=00:10:00                  # Time limit (10 minutes)
 #SBATCH --partition=debug                # Partition name
 
-# Step 1: Set up virtual environment
-python3 -m venv venv
-
-# Step 2: Activate virtual environment
-source venv/bin/activate
-
-# Step 3: Install required Python packages
-pip install -r requirements.txt
-
 # Step 4: Run the Python computation script and redirect errors
-python compute.py 2>> python_computation.err
+python3 compute.py 2>> python_computation.err
 
 # Step 5: Zip the output directory after the computation is finished, if files exist
 if [ -d "out" ] && [ "$(ls -A out)" ]; then
