@@ -7,24 +7,26 @@
 #SBATCH --time=00:10:00                  # Time limit (10 minutes)
 #SBATCH --partition=debug                # Partition name
 
-# Redirect all output to Slurm's error and output files
-exec >python_computation.out 2>python_computation.err
+# Step 1: Set up virtual environment
+python3 -m venv venv
 
-# Load any necessary modules, if required (e.g., for virtualenv or Python)
-# module load python/3.8
-
-# Activate the virtual environment
+# Step 2: Activate virtual environment
 source venv/bin/activate
 
+# Step 3: Install required Python packages
 pip install -r requirements.txt
 
-# Run the Python computation script
-python compute.py
+# Step 4: Run the Python computation script and redirect errors
+python compute.py 2>> python_computation.err
 
-# Zip the output directory after the computation is finished
-zip -r out.zip out/
+# Step 5: Zip the output directory after the computation is finished, if files exist
+if [ -d "out" ] && [ "$(ls -A out)" ]; then
+    zip -r out.zip out/
+else
+    echo "No files to zip in the 'out' directory." >&2
+fi
 
-# Deactivate the virtual environment
+# Step 6: Deactivate virtual environment
 deactivate
 
 echo "Job completed and output zipped into out.zip"
