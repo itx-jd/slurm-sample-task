@@ -10,8 +10,6 @@
 # Load any necessary modules, if required (e.g., for virtualenv or Python)
 # module load python/3.8
 
-mkdir out
-
 # Activate the virtual environment
 source venv/bin/activate
 
