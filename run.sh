@@ -17,7 +17,4 @@ else
     echo "No files to zip in the 'out' directory." >&2
 fi
 
-# Step 6: Deactivate virtual environment
-deactivate
-
 echo "Job completed and output zipped into out.zip"
