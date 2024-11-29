@@ -1,6 +1,5 @@
 #!/bin/bash
 #SBATCH --job-name=python_computation    # Job name
-#SBATCH --output=python_computation.out  # Output file
 #SBATCH --error=python_computation.err   # Error file
 #SBATCH --nodes=1                        # Number of nodes
 #SBATCH --ntasks=1                       # Number of tasks
